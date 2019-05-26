@@ -1,0 +1,55 @@
+/* Cor de fundo e centralizando menu */
+.navbar{
+    margin: 0 auto !important;
+    background-color: black !important;
+}
+
+/* Define o tamanho de cada item do menu e centraliza o texto de cada item */
+.navbar .nav-item{
+    width: 150px;
+    text-align: center;
+}
+
+/* Cor e fonte do link */
+.navbar .nav-item .nav-link{
+    color:white !important;
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+/* Adiciona uma borda ao item ativo no momento */
+.navbar .active{
+    border: solid white !important;
+}
+
+/* Ao passar o mouse por cima do item muda cor e largura dos items com uma transição básica */
+.navbar .nav-item:hover{
+    /*transition-duration: 0.3s;*/
+    transition: all .3s ease-in-ou;
+    width: 170px;
+    background-color: white !important;
+}
+
+/* Ao passar o mouse por cima do item muda cor da fonte */
+.navbar .nav-item .nav-link:hover{
+    color:black !important;
+}
+
+/* Define altura e largura, define um padding-top e cor do fundo, também muda o tipo de fonte. */
+body {
+    padding-top: 100px;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #cccccc; /* Used if the image is unavailable */
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+.jumbotron {
+    background-color: white;
+}
+
+.form-login {
+    padding: 10px;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 5px;
+}

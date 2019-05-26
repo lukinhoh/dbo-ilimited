@@ -1,0 +1,24 @@
+auto 100 listas 'Anti- Push' | setcolor 0 200 500 |  ifnot [$topitem.$posx.$posy.$posz == 3031] dropitemsxyzamount $posx $posy $posz 3031 2 | ifnot [$topitem.$posx.$posy.$posz == 3035] dropitemsxyzamount $posx $posy $posz 3035 2  
+
+
+#auto 500 dontlist | if [$itemcount.3043 > 100] { openitem 3043 2 '''} |  if [$itemcount.12282 > 100] { openitem 12282 2 '''} | if [$itemcount.12283 > 100] { openitem 12283 2 ''}
+
+
+auto 100 set $messageleader 'The Charlotte' | listas 'Combo' | foreach 'newmessages' $msg if [$msg.sender == '$messageleader' && $cutstr.'$msg.content'.1.1 == '.']{attack $cutstr.'$msg.content'.2.100 | wait 1}
+
+00:27 defeated. Total [1/550] Deidara da Pedra.
+
+00:59 Deidara loses 96400 hitpoints due to your attack.
+
+auto 100 dontlist | listboxsetup 1 [3] [$screenbottom-10] 6 4500000 'up' | foreach 'newmessages' $list if [$list.isstatus] { ifnot $list.isbotlook { listboxaddline 1 $setcolor 237 242 '$systime [$list.isstatus' }}
+
+auto 200 if {$list.content == 'Deidara loses 96400 hitpoints due to your attack.'} inc $deads
+
+auto 200 listas '$deads'
+
+
+auto 100 dontlist | listboxsetup 1 [3] [$screenbottom-10] 6 4500000 'up' | foreach 'newmessages' $list if [$list.islog] { ifnot $list.isbotlook { listboxaddline 1 $setcolor 237 242 '$systime [$list.content' }}
+
+auto 100 listas 'Combo PVP HASHIRAMA' | isattacking say "Liberacao de Madeira: Armadilha de Madeira" | wait 25 | isattacking say "Liberacao de Madeira: Mundo de arvores Florescentes" | wait 25 | isattacking say "Liberacao de Madeira: Natividade de um Mundo de arvores" | wait 25 | isattacking say "Tecnica de Invocacao: Palma do Humano de Madeira" | wait 25 | isattacking say "Arte Sabia: Liberacao da Madeira Palma do Buddha" | wait 25 | isattacking say "Liberacao de Madeira: Natividade de um Mundo de arvores" | wait 25 | isattacking say "Liberacao de Madeira: Coluna de Madeira" | wait 25 | isattacking say "Bijuu Dama"
+
+auto 100 listas 'Combo HASHIRAMA' | isattacking say "Liberacao de Madeira: Mundo de arvores Florescentes" | wait 25 | isattacking say "Liberacao de Madeira: Natividade de um Mundo de arvores" | wait 25 | isattacking say "Tecnica de Invocacao: Palma do Humano de Madeira" | wait 25 | isattacking say "Arte Sabia: Liberacao da Madeira Palma do Buddha" | wait 25 | isattacking say "Liberacao de Madeira: Natividade de um Mundo de arvores" | wait 25 | isattacking say "Liberacao de Madeira: Coluna de Madeira" | wait 25 | isattacking say "Bijuu Dama"
