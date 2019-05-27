@@ -1,16 +1,17 @@
 <?php
     require_once("system/db.php");
     require_once("system/functions.php");
+
     // Include head
     include_once('inc/head.php');
-    // Include menu
+    // Include nav
     include_once('inc/nav.php');
-    // Include menu da esquerda
+    // Include nav left
     include_once('inc/navleft.php');
 
-    // Teste
+    // Create database object
     $db = new db();
-    // Conteúdo da página
+    // Include page
     if(isset($_GET['url'])){
         $explode = explode('/', $_GET['url']);
         $file = $explode[0].".php";
@@ -24,7 +25,7 @@
         include_once('pages/inicio.php');
     }
 
-    // Include menu da direita
+    // Include nav right
     include_once('inc/navright.php');
     // Include scripts jquery, ajax, js etc...
     include_once('inc/scripts.php');
