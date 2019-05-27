@@ -9,7 +9,7 @@
                         </thead>
                         <thead>
                             <tr>
-                                <td><a class="link p-3" href="buscar_characters">Buscar Jogador</a></td>
+                                <td><a class="text-light" href="buscar_characters">Buscar Jogador</a></td>
                             </tr>
                         </thead>
                         <thead>
@@ -17,7 +17,7 @@
                         </thead>
                         <thead>
                             <tr>
-                                <td><a class="link p-3" href="">Castle</a></td>
+                                <td><a class="text-light" href="">Castle</a></td>
                             </tr>
                         </thead>
                     </table>

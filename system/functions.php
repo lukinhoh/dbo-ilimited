@@ -50,10 +50,20 @@
         return mysqli_fetch_assoc(mysqli_query($db->conecta_mysqli(), "SELECT premium_points FROM accounts WHERE name = '$name'"));
     }
 
-    // functions to insert
-    function insert_points($name, $points, $get_points){
+    function get_shop_items(){
         $db = new db();
-        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premium_points = '$points'+'$get_points' WHERE name = '$name'");
+        return mysqli_query($db->conecta_mysqli(), "SELECT id, points, itemid, count, offer_type, offer_description, offer_name FROM z_shop_offer");
+    }
+
+    function get_premium_days($name){
+        $db = new db();
+        return mysqli_fetch_assoc(mysqli_query($db->conecta_mysqli(), "SELECT premdays FROM accounts WHERE name = '$name'"));
+    }
+
+    // functions to insert
+    function insert_points($name, $points){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premium_points = premium_points + '$points' WHERE name = '$name'");
     }
 
     function insert_new_account($usuario, $email, $senha, $nickname){
@@ -71,10 +81,30 @@
         return mysqli_query($db->conecta_mysqli(), "INSERT INTO noticias (nickname, titulo, noticia) VALUES ('$nickname', '$titulo', '$noticia')");
     }
 
-    // functions to delet / remove
-    function remove_points($name, $points, $get_points){
+    function add_premium_days($name, $days){
         $db = new db();
-        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premium_points = '$get_points'-'$points' WHERE name = '$name'");
+        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premdays = premdays + '$days' WHERE name = '$name'");
+    }
+
+    function add_all_premium_days($days){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premdays = premdays + '$days'");
+    }
+
+    // functions to delet / remove
+    function remove_points($name, $points){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premium_points = premium_points - '$points' WHERE name = '$name'");
+    }
+
+    function remove_premium_days($name, $days){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premdays = premdays - '$days' WHERE name = '$name'");
+    }
+
+    function remove_all_premium_days(){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premdays = 0");
     }
 
     function delet_notice($id){

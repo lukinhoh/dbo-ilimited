@@ -33,7 +33,7 @@
     }
 
 ?>
-<div class="col-sm-6">
+<div class="col-sm-7">
     <div class="page-header">
         <h1 class="text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded">DBO Ilimited</h1>
         <h1 class="text-center border-bottom border-top border-dark p-3 mb-5 bg-white rounded">Notícias</h1>

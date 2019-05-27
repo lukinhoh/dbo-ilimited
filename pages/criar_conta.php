@@ -51,7 +51,7 @@
     }
     
 ?>
-<div class="col-sm-6">
+<div class="col-sm-7">
     <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Criar Conta</h1></div>
     <form method="post" action="">
         <div class="form-login">

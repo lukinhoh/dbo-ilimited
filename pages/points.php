@@ -14,17 +14,16 @@
         }
 
         $name = $_POST['account_name'];
-        $get_points = get_points($name);
         $points = $_POST['number_points'];
         if(get_user($name)){
             if(isset($_POST['points'])){
                 if($_POST['points'] == 'add'){
-                    if(insert_points($name, $points, $get_points['premium_points'])){
+                    if(insert_points($name, $points)){
                         echo"<script language='javascript' type='text/javascript'>alert('Pontos adicionados com sucesso!');</script>";
                     }
                 }
                 if($_POST['points'] == 'remove'){
-                    if(remove_points($name, $points, $get_points['premium_points'])){
+                    if(remove_points($name, $points)){
                         echo"<script language='javascript' type='text/javascript'>alert('Pontos removidos com sucesso!');</script>";
                     }
                 }
@@ -33,7 +32,7 @@
     }
 
 ?>
-<div class="col-sm-6">
+<div class="col-sm-7">
     <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Adicionar Pontos</h1></div>
     <form method="post" action="">
         <div class="form-group">

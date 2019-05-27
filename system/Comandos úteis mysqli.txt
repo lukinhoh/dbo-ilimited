@@ -1,0 +1,47 @@
+Remover Premium ACC de todos. Não funciona com VIP System .
+UPDATE account SET premdays=0;
+
+Dar 7 dias de Premium ACC a todos os players. Não funciona com VIP System.
+UPDATE accounts SET premdays = premdays + 7
+
+Mardar todos os Players para o templo.
+UPDATE players SET posx = X, posy = Y, posz = Z;
+
+Colocar todo mundo como Grupo 1 = Player.
+UPDATE groups SET flags=0,name="Player" WHERE id=1;
+UPDATE players SET group_id=1;
+DELETE FROM groups WHERE id<>1;
+
+Criar Account Manager. (Original em forgottenserver.sql)
+INSERT INTO `players` VALUES (1, 'Account Manager', 1, 1, 1, 0, 150, 150, 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 50, 50, 7, '', 400, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 10, 10, 10, 0, 0);
+
+Remover Red Skull e frags de todos.
+UPDATE `players` SET `redskulltime`=0;
+
+Dar Todas as Blesses aos players.
+UPDATE `players` SET `blessings`=31;
+
+Remover um item especifico (exemplo id 2160) completamente do jogo (depot, players, houses). Ótimo para casos de cloners.
+DELETE FROM player_depotitems, player_items, tile_items WHERE itemtype = 2160;
+
+Deletar players inativos, level baiaxo de 50, 20 days Inativo. Recomendo um backup do seu banco de dados antes desta ação.
+DELETE FROM players WHERE level < 50 AND lastlogin < UNIX_TIMESTAMP() - 20*24*60*60
+
+Deletou um player do banco de dados? Com este código irá remover todos os items dele que ficaram no database.
+DELETE FROM player_items WHERE player_id NOT IN (SELECT id FROM players);
+
+Deletar todos os itens de um único player .Onde 1234 é o ID do player.
+DELETE FROM `player_depotitems` , `player_items` WHERE `player_id` = '1234'
+
+Trocar o outfit de todos os players.
+UPDATE players SET lookbody =69, lookfeet =95, lookhead =115, looktype =128
+
+Remover as casas de players que foram deletados.
+UPDATE `houses` SET `owner` = '0' WHERE `houses`.`owner` NOT IN ( SELECT `players`.`id` FROM `players` WHERE `players`.`id` = `houses`.`owner` );
+
+Deletar um Storage de todos os players. Ótimo em caso de bugs de Quest.
+DELETE FROM `player_storage` WHERE `key` = '11551'; E o Global Storage Também.
+DELETE FROM `global_storage` WHERE `key` = '11551';
+
+Deletar players que nunca logaram.
+DELETE FROM `players` WHERE `lastlogin`=0;

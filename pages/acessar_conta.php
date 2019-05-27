@@ -58,7 +58,7 @@
         $account_id = $_SESSION['account_id'];
     }
 ?>
-<div class="col-sm-6">
+<div class="col-sm-7">
     <?php if($_SESSION['logado'] == false) {?>
         <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Acessar Conta</h1></div>
         <form method="post">
@@ -80,6 +80,7 @@
         <h3 class="text-center font-weight-bold">Suas informações</h3>
         <div class="border border-dark shadow-sm p-3 mb-5 bg-white rounded">
             <h5 class="font-weight-bold">Nome: <?php echo $_SESSION['nome']; ?></h>
+            <h5 class="font-weight-bold">Premium Days: <?php $get_points = get_premium_days($_SESSION['name']); echo $get_points['premdays']; ?></h>
             <h5 class="font-weight-bold">Premium Points: <?php $get_points = get_points($_SESSION['name']); echo $get_points['premium_points']; ?></h>
         </div>
         
@@ -94,7 +95,7 @@
                 </tr>
             </thead>
             <thead>
-                <?php $get_char = get_char_by_account_id($account_id) ?>
+                <?php $get_char = get_char_by_account_id($account_id); ?>
                 <?php while($dado = $get_char->fetch_array()) {?>
                     <tr>
                         <td scope="col"><?php echo $dado['name']?></td>
