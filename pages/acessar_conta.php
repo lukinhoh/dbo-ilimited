@@ -1,13 +1,9 @@
 <?php
-    
-    require_once("system/db.php");
     session_start();
 
     if(!isset($_SESSION['logado'])){
         $_SESSION['logado'] = false;
     }
-    $db = new db();
-    $link = $db->conecta_mysqli();
 
     if($_SESSION['logado'] == false){
 
@@ -27,7 +23,7 @@
                 exit;
             }
 
-            $checar_usuario_e_senha = $db->checar_usuario_e_senha($usuario, $senha);
+            $checar_usuario_e_senha = checar_usuario_e_senha($usuario, $senha);
 
             if(mysqli_num_rows($checar_usuario_e_senha) == 1){
                 $dados_usuario = $checar_usuario_e_senha->fetch_array();
@@ -53,14 +49,12 @@
         }
         if(isset($_POST['deletar'])){
             $id_delet = $_POST['id_deletar'];
-            $del = "DELETE FROM players WHERE name = '$id_delet'";
-            if(mysqli_query($link, $del)){
+            if(delet_by_id($id_delet)){
                 echo"<script language='javascript' type='text/javascript'>alert('Character deletado!');</script>";
             }
         }
 
         $account_id = $_SESSION['account_id'];
-        $checar_chars = mysqli_query($link, "SELECT name, vocation, level FROM players WHERE account_id = '$account_id'");
     }
 ?>
 <div class="col-sm-6">
@@ -94,17 +88,18 @@
                 </tr>
             </thead>
             <thead>
-                <?php while($dado = $checar_chars->fetch_array()) {?>
+                <?php $get_char = get_char_by_account_id($account_id) ?>
+                <?php while($dado = $get_char->fetch_array()) {?>
                     <tr>
                         <td scope="col"><?php echo $dado['name']?></td>
                         <?php
                             if($dado['vocation'] != 8){
-                                $checar_chars2 = mysqli_query($link, "SELECT name, vocation FROM players WHERE account_id = 1 AND vocation = ".$dado['vocation']);
-                                while($dado2 = $checar_chars2->fetch_array()){
+                                $voc = get_char_by_vocation($dado['vocation']);
+                                while($dado2 = $voc->fetch_array()){
                         ?>
                         <td scope="col"><?php echo explode(" ", $dado2['name'])[0]?></td>
-                            <?php }} else { ?>
-                                <td scope="col"><?php echo "ADMIN"?></td>
+                            <?php }} elseif($dado['vocation'] == 8) { ?>
+                                <td scope="col"><?php echo "Admin"?></td>
                             <?php } ?>
                         <td scope="col"><?php echo $dado['level']?></td>
                         <td scope="col">

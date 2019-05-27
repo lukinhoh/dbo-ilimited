@@ -1,4 +1,6 @@
 <?php
+    require_once("system/db.php");
+    require_once("system/functions.php");
     // Include head
     include_once('inc/head.php');
     // Include menu
@@ -6,6 +8,9 @@
     // Include menu da esquerda
     include_once('inc/navleft.php');
 
+    // Teste
+    $db = new db();
+    // Conteúdo da página
     if(isset($_GET['url'])){
         $explode = explode('/', $_GET['url']);
         $file = $explode[0].".php";

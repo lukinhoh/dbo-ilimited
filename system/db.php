@@ -25,37 +25,5 @@
 
             return $con;
         }
-
-        public function checar_usuario_e_senha($user, $password){
-            $db = new db();
-            return mysqli_query($db->conecta_mysqli(), "SELECT id, name, nickname, page_access FROM accounts WHERE name = '$user' AND password = '$password'");
-        }
-
-        public function pegar_chars($account_id){
-            $db = new db();
-            return mysqli_query($db->conecta_mysqli(), "SELECT name, vocation, level FROM players WHERE account_id = '$account_id'");
-        }
-
-        public function pegar_name($nick){
-            $db = new db();
-            return mysqli_query($db->conecta_mysqli(), "SELECT name FROM players WHERE name = '$nick'");
-        }
-
-        public function pegar_noticias(){
-            $db = new db();
-            return mysqli_query($db->conecta_mysqli(), "SELECT id, nickname, titulo, noticia FROM noticias ORDER BY id DESC LIMIT 10");
-        }   
-
-        public function inserir_noticia($nickname, $titulo,$noticia){
-            $db = new db();
-            return mysqli_query($db->conecta_mysqli(), "INSERT INTO noticias (nickname, titulo, noticia) VALUES ('$nickname', '$titulo', '$noticia')");
-        }
-
-        public function deletar_noticia($id){
-            $db = new db();
-           return mysqli_query($db->conecta_mysqli(), "DELETE FROM noticias WHERE id = '$id'");
-
-        }
-
     }
 ?>

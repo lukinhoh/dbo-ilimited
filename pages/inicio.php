@@ -1,10 +1,7 @@
 <?php
-    require_once("system/db.php");
     session_start();
-
-    $db = new db();
     
-    $pegar_noticias = $db->pegar_noticias();
+    $pegar_noticias = pegar_noticias();
 
     if(!isset($_SESSION['logado'])){
         session_destroy();
@@ -13,22 +10,22 @@
             if($_SESSION['page_access'] == 5){
                 if(isset($_POST['titulo']) && isset($_POST['noticia'])){
                     if(empty($_POST['titulo'])){
-                        echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o campo título da postagem!');window.location.href='/index';</script>";
+                        echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o campo título da postagem!');window.location.href='/inicio';</script>";
                         exit;
                     }
                     if(empty($_POST['noticia'])){
-                        echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o campo notícia da postagem!');window.location.href='/index';</script>";
+                        echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o campo notícia da postagem!');window.location.href='/inicio';</script>";
                         exit;
                     }
 
                     $db->inserir_noticia($_SESSION['nome'], $_POST['titulo'], $_POST['noticia']);
-                    echo"<script language='javascript' type='text/javascript'>alert('Postagem criada!');window.location.href='/index';</script>";
+                    echo"<script language='javascript' type='text/javascript'>alert('Postagem criada!');window.location.href='/inicio';</script>";
                     exit;
 
                 }
                 if(isset($_POST['btn_deletar_noticia'])){
                     $db->deletar_noticia($_POST['id_deletar_noticia']);
-                    echo"<script language='javascript' type='text/javascript'>alert('Postagem deletada!');window.location.href='/index';</script>";
+                    echo"<script language='javascript' type='text/javascript'>alert('Postagem deletada!');window.location.href='/inicio';</script>";
                     exit;
                 }
             }
@@ -67,8 +64,13 @@
             <thead>
                 <tr>
                 <td scope="col"><?php echo $dado['noticia'] ?></td>
-                <?php if(isset($_SESSION['page_access'])){if($_SESSION['page_access'] == 5){ ?>
-                    <td>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <td scope="col"><?php echo "Por: ".$dado['nickname']?></td>
+                    <?php if(isset($_SESSION['page_access'])){if($_SESSION['page_access'] == 5){ ?>
+                    <td scope="col">
                         <form method="post" action="">
                             <div class="form-group">
                                 <input type='hidden' name='id_deletar_noticia' value="<?php echo  $dado['id'] ?>">
@@ -76,12 +78,7 @@
                             </div>
                         </form>
                     </td>
-                <?php }} ?>
-                </tr>
-            </thead>
-            <thead>
-                <tr>
-                    <td><?php echo "Por: ".$dado['nickname']?></td>
+                    <?php }} ?>
                 </tr>
             </thead>
         </table>
