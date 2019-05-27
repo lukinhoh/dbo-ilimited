@@ -9,7 +9,7 @@
                         </thead>
                         <thead>
                             <tr>
-                                <td><a class="link p-3" href="#">Buscar Jogador</a></td>
+                                <td><a class="link p-3" href="buscar_characters">Buscar Jogador</a></td>
                             </tr>
                         </thead>
                         <thead>
