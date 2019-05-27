@@ -2,21 +2,21 @@
     class db{
 
         // host
-        private $host = 'localhost';
+        private $db_host = 'localhost';
 
         // usuario
-        private $usuario = 'root';
+        private $db_usuario = 'root';
 
         // senha
-        private $senha = '9669174';
+        private $db_senha = '9669174';
 
         // banco de dados
-        private $database = 'dbz';
+        private $db_database = 'dbz';
 
         public function conecta_mysqli(){
 
             // criar a conexao
-            $con = mysqli_connect($this->host, $this->usuario, $this->senha, $this->database);
+            $con = mysqli_connect($this->db_host, $this->db_usuario, $this->db_senha, $this->db_database);
             
             // verificar se houve erro de conexao
             if(mysqli_connect_errno($con)){
@@ -24,6 +24,16 @@
             }
 
             return $con;
+        }
+
+        public function checar_usuario_e_senha($user, $password){
+            $db = new db();
+            return mysqli_query($db->conecta_mysqli(), "SELECT id, name, nickname, page_access FROM accounts WHERE name = '$user' AND password = '$password'");
+        }
+
+        public function pegar_chars($account_id){
+            $db = new db();
+            return mysqli_query($db->conecta_mysqli(), "SELECT name, vocation, level FROM players WHERE account_id = '$account_id'");
         }
 
         public function pegar_name($nick){

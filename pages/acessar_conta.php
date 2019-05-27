@@ -1,0 +1,125 @@
+<?php
+    
+    require_once("system/db.php");
+    session_start();
+
+    if(!isset($_SESSION['logado'])){
+        $_SESSION['logado'] = false;
+    }
+    $db = new db();
+    $link = $db->conecta_mysqli();
+
+    if($_SESSION['logado'] == false){
+
+        if($_SERVER["REQUEST_METHOD"] === 'POST'){
+            $usuario = $_POST['usuario'];
+            $senha = sha1($_POST['senha']);
+
+            // Verifica se $usuario foi iniciado e se está vazia, caso esteja vazia retorna para a página de login conta.
+            if(isset($usuario) && empty($usuario)){
+                echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o login!');window.location.href='/acessar_conta';</script>";
+                exit;
+            }
+
+            // Verifica se $senha foi iniciado e se está vazia, caso esteja vazia retorna para a página de login conta.
+            if(isset($senha) && empty($senha)){
+                echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha a senha!');window.location.href='/acessar_conta';</script>";
+                exit;
+            }
+
+            $checar_usuario_e_senha = $db->checar_usuario_e_senha($usuario, $senha);
+
+            if(mysqli_num_rows($checar_usuario_e_senha) == 1){
+                $dados_usuario = $checar_usuario_e_senha->fetch_array();
+                // Logado
+                echo"<script language='javascript' type='text/javascript'>alert('Logado com sucesso!');window.location.href='/acessar_conta'</script>";
+                $_SESSION['logado'] = true;
+                $_SESSION['nome'] = $dados_usuario['nickname'];
+                $_SESSION['account_id'] = $dados_usuario['id'];
+                $_SESSION['page_access'] = $dados_usuario['page_access'];
+            } else {
+                echo"<script language='javascript' type='text/javascript'>alert('Usuário ou senha incorreto!');</script>";
+                session_destroy();
+            }
+        }
+        //if(isset($_POST['usuario']) && isset($_POST['senha'])){
+            
+        //}
+    }
+    if($_SESSION['logado']){
+        if(isset($_POST['sair'])){
+            session_destroy();
+            header("location: /acessar_conta");
+        }
+        if(isset($_POST['deletar'])){
+            $id_delet = $_POST['id_deletar'];
+            $del = "DELETE FROM players WHERE name = '$id_delet'";
+            if(mysqli_query($link, $del)){
+                echo"<script language='javascript' type='text/javascript'>alert('Character deletado!');</script>";
+            }
+        }
+
+        $account_id = $_SESSION['account_id'];
+        $checar_chars = mysqli_query($link, "SELECT name, vocation, level FROM players WHERE account_id = '$account_id'");
+    }
+?>
+<div class="col-sm-6">
+    <?php if($_SESSION['logado'] == false) {?>
+        <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Acessar Conta</h1></div>
+        <form method="post">
+            <div class="form-login">
+                <div class="form-group">
+                    <label for="nome" class="font-weight-bold">Usuário</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite seu usuário">
+                </div>
+                <div class="form-group">
+                    <label for="senha" class="font-weight-bold">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Entrar</button>
+        </form>
+        
+    <?php } elseif($_SESSION['logado'] == true) {?>
+        <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><?php echo "<h1 class='text-capitalize'>Seja Bem-Vindo, ".$_SESSION['nome']."! </h1>"; ?></div>
+        
+        <table class="table table-hover table-dark rounded">
+            <div class="text-center font-weight-bold">Seus personagens</div>
+            <thead>
+                <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Vocation</th>
+                <th scope="col">Level</th>
+                <th scope="col">Editar</th>
+                </tr>
+            </thead>
+            <thead>
+                <?php while($dado = $checar_chars->fetch_array()) {?>
+                    <tr>
+                        <td scope="col"><?php echo $dado['name']?></td>
+                        <?php
+                            if($dado['vocation'] != 8){
+                                $checar_chars2 = mysqli_query($link, "SELECT name, vocation FROM players WHERE account_id = 1 AND vocation = ".$dado['vocation']);
+                                while($dado2 = $checar_chars2->fetch_array()){
+                        ?>
+                        <td scope="col"><?php echo explode(" ", $dado2['name'])[0]?></td>
+                            <?php }} else { ?>
+                                <td scope="col"><?php echo "ADMIN"?></td>
+                            <?php } ?>
+                        <td scope="col"><?php echo $dado['level']?></td>
+                        <td scope="col">
+                            <form method="post" action="">
+                                <input type='hidden' name='id_deletar' value="<?php echo  $dado['name'] ?>">
+                                <button type="submit" name="deletar" class="btn btn-primary p-0 mt-0">Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </thead>
+        </table>
+        <a href="criar_personagem" class="btn btn-outline-dark">Create Character</a>
+        <form method="post" action="">
+            <button type="submit" name="sair" class="btn btn-outline-dark">Logout</button>
+        </form>
+    <?php } ?>
+</div>
