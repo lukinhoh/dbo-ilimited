@@ -11,7 +11,7 @@
     
 ?>
 
-                <div class="col-sm-6">
-                    <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Shopping</h1></div>
-                    <a href="donate.php" class="btn btn-outline-dark">Comprar Pontos</a></a>
-                </div>
+<div class="col-sm-6">
+    <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Shopping</h1></div>
+    <a href="comprar_pontos" class="btn btn-outline-dark">Comprar Pontos</a></a>
+</div>

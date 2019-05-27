@@ -31,6 +31,7 @@
                 echo"<script language='javascript' type='text/javascript'>alert('Logado com sucesso!');window.location.href='/acessar_conta'</script>";
                 $_SESSION['logado'] = true;
                 $_SESSION['nome'] = $dados_usuario['nickname'];
+                $_SESSION['name'] = $dados_usuario['name'];
                 $_SESSION['account_id'] = $dados_usuario['id'];
                 $_SESSION['page_access'] = $dados_usuario['page_access'];
             } else {
@@ -63,7 +64,7 @@
         <form method="post">
             <div class="form-login">
                 <div class="form-group">
-                    <label for="nome" class="font-weight-bold">Usuário</label>
+                    <label for="usuario" class="font-weight-bold">Usuário</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite seu usuário">
                 </div>
                 <div class="form-group">
@@ -76,15 +77,20 @@
         
     <?php } elseif($_SESSION['logado'] == true) {?>
         <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><?php echo "<h1 class='text-capitalize'>Seja Bem-Vindo, ".$_SESSION['nome']."! </h1>"; ?></div>
+        <h3 class="text-center font-weight-bold">Suas informações</h3>
+        <div class="border border-dark shadow-sm p-3 mb-5 bg-white rounded">
+            <h5 class="font-weight-bold">Nome: <?php echo $_SESSION['nome']; ?></h>
+            <h5 class="font-weight-bold">Premium Points: <?php $get_points = get_points($_SESSION['name']); echo $get_points['premium_points']; ?></h>
+        </div>
         
         <table class="table table-hover table-dark rounded">
-            <div class="text-center font-weight-bold">Seus personagens</div>
+            <h3 class="text-center font-weight-bold">Seus Personagens</h3>
             <thead>
                 <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Vocation</th>
-                <th scope="col">Level</th>
-                <th scope="col">Editar</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Vocation</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Editar</th>
                 </tr>
             </thead>
             <thead>
@@ -105,16 +111,20 @@
                         <td scope="col">
                             <form method="post" action="">
                                 <input type='hidden' name='id_deletar' value="<?php echo  $dado['name'] ?>">
-                                <button type="submit" name="deletar" class="btn btn-primary p-0 mt-0">Deletar</button>
+                                <button type="submit" name="deletar" class="btn btn-dark p-0 mt-0">Deletar</button>
                             </form>
                         </td>
                     </tr>
                 <?php } ?>
             </thead>
         </table>
-        <a href="criar_personagem" class="btn btn-outline-dark">Create Character</a>
+        
         <form method="post" action="">
-            <button type="submit" name="sair" class="btn btn-outline-dark">Logout</button>
+            <div class="form-group"><a href="criar_personagem" class="btn btn-outline-dark">Create Character</a></div>
+            <?php if($_SESSION['page_access'] == 5){ ?>
+                <div class="form-group"><a href="painel_admin" class="btn btn-outline-dark">Painel Admin</a></div>
+            <?php } ?>
+            <div class="form-group"><button type="submit" name="sair" class="btn btn-outline-dark">Logout</button></div>
         </form>
     <?php } ?>
 </div>

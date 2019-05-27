@@ -34,19 +34,11 @@
             exit;
         }   
 
-        $database = new db();
-        $link = $database->conecta_mysqli();
-        
-        $checar_usuario = mysqli_query($link, "SELECT name FROM accounts WHERE name = '$usuario'");
-
-        $checar_email = mysqli_query($link, "SELECT email FROM accounts WHERE email = '$email'");
-
-        $criar = "INSERT INTO accounts (name, email, password, nickname) VALUES ('$usuario', '$email', '$senha', '$nickname')";
         // Checagem se já existe usuario e email no banco de dados, caso não exista, cria a conta.
-        if(mysqli_num_rows($checar_usuario) == 0){
-            if(mysqli_num_rows($checar_email) == 0){
+        if(mysqli_num_rows(get_user($usuario)) == 0){
+            if(mysqli_num_rows(get_email($email)) == 0){
                 // executar a query
-                if(mysqli_query($link, $criar)){
+                if(insert_new_account($usuario, $email, $senha, $nickname)){
                     echo"<script language='javascript' type='text/javascript'>alert('Conta criada com sucesso!');window.location.href='/acessar_conta';</script>";
                     exit();
                 }

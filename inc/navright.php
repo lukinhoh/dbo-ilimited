@@ -4,20 +4,21 @@
                             <th class="text-center" scope="col">Servidor</th>
                         </thead>
                         <thead>
+                            <?php $consultar_onlines = pegar_chars_on(); if($consultar_onlines['all_online'] >= 1){?>
                             <tr>
-                                <?php $consultar_onlines = pegar_chars_on(); if($consultar_onlines['all_online'] >= 1){?>
-                                    <td>Servidor Status: <a class="text-success">Online</a></td>
-                                <?php } else {?>
-                                    <td>Servidor Status: <a class="text-danger">Offline</a></td>
-                                <?php } ?>
+                                <td>Servidor Status: <a class="text-success">Online</a></td>
+                            </tr> 
+                            <tr>
+                                <td>Jogadores Online: <a class="text-success"><?php echo $consultar_onlines['all_online']; ?></a></td>
+                            </tr>   
+                            <?php } else {?>
+                            <tr>
+                                <td>Servidor Status: <a class="text-danger">Offline</a></td>
                             </tr>
                             <tr>
-                                <?php $consultar_onlines = pegar_chars_on(); if($consultar_onlines['all_online'] >= 1){?>
-                                    <td>Jogadores Online: <a class="text-success"><?php echo $consultar_onlines['all_online']; ?></a></td>
-                                <?php } else {?>
-                                    <td>Jogadores Online: <a class="text-danger"><?php echo $consultar_onlines['all_online']; ?></a></td>
-                                <?php } ?>
+                                <td>Jogadores Online: <a class="text-danger"><?php echo $consultar_onlines['all_online']; ?></a></td>
                             </tr>
+                            <?php } ?>
                         </thead>
                     </table>
                 </div>
