@@ -10,9 +10,6 @@
         header("location: /acessar_conta");
     }
 
-    $db = new db();
-    $link = $db->conecta_mysqli();
-
     // Checa se as informações foram iniciadas
     if($_SERVER["REQUEST_METHOD"] === 'POST'){
         $nick = $_POST['nick'];
@@ -24,9 +21,7 @@
             exit;
         }
 
-        $buscar_nick = $db->pegar_name($link, $nick);
-
-        $pegar_dados = mysqli_query($link, "SELECT health, healthmax, lookbody, lookfeet, lookhead, looklegs, looktype, lookaddons, mana, manamax, soul, town_id, cap, sex, save, skull, stamina, direction, loss_experience, loss_mana, loss_skills, loss_containers, loss_items FROM players WHERE vocation = '$vocation'");
+        $pegar_dados = get_attributes($vocation);
 
         $dados = $pegar_dados->fetch_array();
 
@@ -54,11 +49,9 @@
         $loss_containers = $dados['loss_containers'];
         $loss_items = $dados['loss_items'];
 
-        $inserir_dados = "INSERT INTO players (name, account_id, vocation, health, healthmax, lookbody, lookfeet, lookhead, looklegs, looktype, lookaddons, mana, manamax, soul, town_id, cap, sex, save, skull, stamina, direction, loss_experience, loss_mana, loss_skills, loss_containers, loss_items) VALUES('$nick', '$account_id', '$vocation', '$health', '$healthmax', '$lookbody', '$lookfeet', '$lookhead', '$looklegs', '$looktype', '$lookaddons', '$mana', '$manamax', '$soul', '$town_id', '$cap', '$sex', '$save', '$skull', '$stamina', '$direction', '$loss_experience', '$loss_mana', '$loss_skills', '$loss_containers', '$loss_items')";
-
         // Checa se nickname existe
-        if(mysqli_num_rows($buscar_nick) == 0){
-            if(mysqli_query($link, $inserir_dados)){
+        if(mysqli_num_rows(get_name($nick)) == 0){
+            if(insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items)){
                 echo"<script language='javascript' type='text/javascript'>alert('Character criado com sucesso!');window.location.href='/acessar_conta';</script>";
                 exit();
             }

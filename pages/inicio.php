@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    $pegar_noticias = pegar_noticias();
+    $pegar_noticias = get_notices();
 
     if(!isset($_SESSION['logado'])){
         session_destroy();
@@ -18,13 +18,13 @@
                         exit;
                     }
 
-                    $db->inserir_noticia($_SESSION['nome'], $_POST['titulo'], $_POST['noticia']);
+                    insert_notice($_SESSION['nome'], $_POST['titulo'], $_POST['noticia']);
                     echo"<script language='javascript' type='text/javascript'>alert('Postagem criada!');window.location.href='/inicio';</script>";
                     exit;
 
                 }
                 if(isset($_POST['btn_deletar_noticia'])){
-                    $db->deletar_noticia($_POST['id_deletar_noticia']);
+                    delet_notice($_POST['id_deletar_noticia']);
                     echo"<script language='javascript' type='text/javascript'>alert('Postagem deletada!');window.location.href='/inicio';</script>";
                     exit;
                 }
