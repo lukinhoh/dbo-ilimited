@@ -74,7 +74,7 @@
                         <form method="post" action="">
                             <div class="form-group">
                                 <input type='hidden' name='id_deletar_noticia' value="<?php echo  $dado['id'] ?>">
-                                <button type="submit" name="btn_deletar_noticia" class="btn btn-primary p-0 mt-0">Deletar</button>
+                                <button type="submit" name="btn_deletar_noticia" class="btn btn-dark p-0 mt-0">Deletar</button>
                             </div>
                         </form>
                     </td>

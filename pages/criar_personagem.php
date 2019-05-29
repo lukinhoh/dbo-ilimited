@@ -84,7 +84,6 @@
                     <option value="45">C17</option>
                     <option value="140">C18</option>
                     <option value="83">Cell</option>
-                    <option value="178">Chibi Trunks</option>
                     <option value="192">Cooler</option>
                     <option value="206">Dende</option>
                     <option value="95">Freeza</option>

@@ -1,7 +1,10 @@
-Remover Premium ACC de todos. Não funciona com VIP System .
+auto 100 listas "FAST ATTACK" | setcolor 255 0 0 | isattacking { attack target } | if [$target] { attack target } | ifnot [$followed] { attack target } | if [$sellf.hppc <= 1] { attack target } | if [$mppc <= 1] { attack target } | if [$target.isshootable] { attack target } | if [$target.isreachable] { attack target } | if [$target.hppc <= 1] { attack target }
+
+
+Remover Premium ACC de todos. Nï¿½o funciona com VIP System .
 UPDATE account SET premdays=0;
 
-Dar 7 dias de Premium ACC a todos os players. Não funciona com VIP System.
+Dar 7 dias de Premium ACC a todos os players. Nï¿½o funciona com VIP System.
 UPDATE accounts SET premdays = premdays + 7
 
 Mardar todos os Players para o templo.
@@ -21,16 +24,16 @@ UPDATE `players` SET `redskulltime`=0;
 Dar Todas as Blesses aos players.
 UPDATE `players` SET `blessings`=31;
 
-Remover um item especifico (exemplo id 2160) completamente do jogo (depot, players, houses). Ótimo para casos de cloners.
+Remover um item especifico (exemplo id 2160) completamente do jogo (depot, players, houses). ï¿½timo para casos de cloners.
 DELETE FROM player_depotitems, player_items, tile_items WHERE itemtype = 2160;
 
-Deletar players inativos, level baiaxo de 50, 20 days Inativo. Recomendo um backup do seu banco de dados antes desta ação.
+Deletar players inativos, level baiaxo de 50, 20 days Inativo. Recomendo um backup do seu banco de dados antes desta aï¿½ï¿½o.
 DELETE FROM players WHERE level < 50 AND lastlogin < UNIX_TIMESTAMP() - 20*24*60*60
 
-Deletou um player do banco de dados? Com este código irá remover todos os items dele que ficaram no database.
+Deletou um player do banco de dados? Com este cï¿½digo irï¿½ remover todos os items dele que ficaram no database.
 DELETE FROM player_items WHERE player_id NOT IN (SELECT id FROM players);
 
-Deletar todos os itens de um único player .Onde 1234 é o ID do player.
+Deletar todos os itens de um ï¿½nico player .Onde 1234 ï¿½ o ID do player.
 DELETE FROM `player_depotitems` , `player_items` WHERE `player_id` = '1234'
 
 Trocar o outfit de todos os players.
@@ -39,8 +42,8 @@ UPDATE players SET lookbody =69, lookfeet =95, lookhead =115, looktype =128
 Remover as casas de players que foram deletados.
 UPDATE `houses` SET `owner` = '0' WHERE `houses`.`owner` NOT IN ( SELECT `players`.`id` FROM `players` WHERE `players`.`id` = `houses`.`owner` );
 
-Deletar um Storage de todos os players. Ótimo em caso de bugs de Quest.
-DELETE FROM `player_storage` WHERE `key` = '11551'; E o Global Storage Também.
+Deletar um Storage de todos os players. ï¿½timo em caso de bugs de Quest.
+DELETE FROM `player_storage` WHERE `key` = '11551'; E o Global Storage Tambï¿½m.
 DELETE FROM `global_storage` WHERE `key` = '11551';
 
 Deletar players que nunca logaram.
