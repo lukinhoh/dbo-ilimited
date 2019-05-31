@@ -34,7 +34,8 @@
                 $_SESSION['account_id'] = $dados_usuario['id'];
                 $_SESSION['page_access'] = $dados_usuario['page_access'];
             } else {
-                echo"<script language='javascript' type='text/javascript'>alert('Usuário ou senha incorreto!');</script>";
+                //echo"<script language='javascript' type='text/javascript'>alert('Usuário ou senha incorreto!');</script>";
+                $erro = 1;
                 session_destroy();
             }
         }
@@ -63,17 +64,21 @@
         <form method="post">
             <div class="form-login">
                 <div class="form-group">
-                    <label for="usuario" class="font-weight-bold">Usuário</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite seu usuário">
+                    <label for="campo_usuario" class="font-weight-bold">Usuário</label>
+                    <input type="text" class="form-control" id="campo_usuario" name="usuario" placeholder="Digite seu usuário" required>
                 </div>
                 <div class="form-group">
-                    <label for="senha" class="font-weight-bold">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                    <label for="campo_senha" class="font-weight-bold">Senha</label>
+                    <input type="password" class="form-control" id="campo_senha" name="senha" placeholder="Digite sua senha" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark">Entrar</button>
+            <button type="submit" class="btn btn-outline-dark mt-3" id="btn_entrar">Entrar</button>
         </form>
-        
+        <?php 
+            if(isset($erro) && $erro == 1){
+                echo "<br><font color='#FF0000'>Usuário ou senha inválido(s)</font>" ;
+            }
+        ?>
     <?php } elseif($_SESSION['logado'] == true) {?>
         <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><?php echo "<h1 class='text-capitalize'>Seja Bem-Vindo, ".$_SESSION['nome']."! </h1>"; ?></div>
         <h3 class="text-center font-weight-bold">Suas informações</h3>
@@ -127,4 +132,5 @@
             <div class="form-group"><button type="submit" name="sair" class="btn btn-outline-dark">Logout</button></div>
         </form>
     <?php } ?>
+
 </div>

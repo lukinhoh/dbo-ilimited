@@ -73,6 +73,6 @@
         </div>
         <label>Ao criar conta você estará aceitando os termos do serviço.</label>
         </div>
-        <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
+        <button type="submit" class="btn btn-outline-dark mt-3">Cadastrar</button>
     </form>
 </div>

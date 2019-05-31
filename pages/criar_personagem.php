@@ -108,6 +108,6 @@
                 </select>
             </div>
         </div>
-        <button type="submit" class="btn btn-outline-dark">Criar</button>
+        <button type="submit" class="btn btn-outline-dark mt-3">Criar</button>
     </form>
 </div>

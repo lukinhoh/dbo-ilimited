@@ -51,7 +51,7 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="noticia"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-dark">Postar</button>
+                <button type="submit" class="btn btn-outline-dark mt-3 mb-3">Postar</button>
             </form>
     <?php } }?>
     <?php while($dado = $pegar_noticias->fetch_array()) {?>
