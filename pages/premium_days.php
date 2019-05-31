@@ -2,7 +2,7 @@
     session_start(); 
 
     if($_SESSION['page_access'] != 5){
-        header("location: inicio");
+        header("location: 404");
     } 
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){

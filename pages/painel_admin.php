@@ -3,7 +3,7 @@
 
     if(isset($_SESSION['page_access'])){
         if($_SESSION['page_access'] == 0){
-            header("location: inicio");
+            header("location: 404");
         }
     }else{
         header("location: acessar_conta");

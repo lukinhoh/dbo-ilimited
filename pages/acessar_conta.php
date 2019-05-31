@@ -28,7 +28,6 @@
             if(mysqli_num_rows($checar_usuario_e_senha) == 1){
                 $dados_usuario = $checar_usuario_e_senha->fetch_array();
                 // Logado
-                echo"<script language='javascript' type='text/javascript'>alert('Logado com sucesso!');window.location.href='/acessar_conta'</script>";
                 $_SESSION['logado'] = true;
                 $_SESSION['nome'] = $dados_usuario['nickname'];
                 $_SESSION['name'] = $dados_usuario['name'];

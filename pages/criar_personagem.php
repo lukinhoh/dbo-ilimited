@@ -48,6 +48,7 @@
         $loss_skills = $dados['loss_skills'];
         $loss_containers = $dados['loss_containers'];
         $loss_items = $dados['loss_items'];
+        $create_date = date('d/m/y');
 
         $get_char = get_char_by_account_id($account_id);
         if(mysqli_num_rows($get_char) == 10){
@@ -56,7 +57,7 @@
         }
         // Checa se nickname existe
         if(mysqli_num_rows(get_player_name($nick)) == 0){
-            if(insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items)){
+            if(insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items, $create_date)){
                 echo"<script language='javascript' type='text/javascript'>alert('Character criado com sucesso!');window.location.href='/acessar_conta';</script>";
                 exit();
             }
@@ -72,11 +73,11 @@
         <div class="form-login">
             <div class="form-group">
                 <label for="nick" class="font-weight-bold">Nome</label>
-                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nome do character">
+                <input type="text" class="form-control" id="nick" name="nick" placeholder="Nome do character" required>
             </div>
             <div class="form-group">
                 <label for="select" class="font-weight-bold">Vocação</label>
-                <select id="select" name="vocation" class="form-control">
+                <select id="select" name="vocation" class="form-control" required>
                     <option value="230">Bardock</option>
                     <option value="127">Brolly</option>
                     <option value="364">Bulma</option>

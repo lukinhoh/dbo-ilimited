@@ -57,21 +57,21 @@
         <div class="form-login">
         <div class="form-group">
             <label for="usuario" class="font-weight-bold">Usuário</label>
-            <input type="text" class="form-control" id="usuario" name="usuario">
+            <input type="text" class="form-control" id="usuario" name="usuario" required>
         </div>
         <div class="form-group">
             <label for="nickname" class="font-weight-bold">Seu Nome</label>
-            <input type="text" class="form-control" id="nickname" name="nickname">
+            <input type="text" class="form-control" id="nickname" name="nickname" required>
         </div>
         <div class="form-group">
             <label for="email" class="font-weight-bold">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
             <label for="senha" class="font-weight-bold">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha">
+            <input type="password" class="form-control" id="senha" name="senha" required>
         </div>
-        <label>Ao criar você estará aceitando os termos do serviço.</label>
+        <label>Ao criar conta você estará aceitando os termos do serviço.</label>
         </div>
         <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
     </form>

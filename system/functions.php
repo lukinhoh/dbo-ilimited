@@ -60,7 +60,17 @@
         return mysqli_fetch_assoc(mysqli_query($db->conecta_mysqli(), "SELECT premdays FROM accounts WHERE name = '$name'"));
     }
 
+    function get_item_by_id($itemid){
+        $db = new db();
+        return mysqli_fetch_assoc(mysqli_query($db->conecta_mysqli(), "SELECT * FROM z_shop_offer WHERE itemid = '$itemid'"));
+    }
+
     // functions to insert
+    function insert_item_comunication($player_name, $item_type, $item_id, $item_name, $item_count){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "INSERT INTO z_ots_comunication (player_name, item_type, item_id, item_name, item_count) VALUES ('$player_name', '$item_type', '$item_id', '$item_name', '$item_count')");
+    }
+    
     function insert_points($name, $points){
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premium_points = premium_points + '$points' WHERE name = '$name'");
@@ -71,9 +81,9 @@
         return mysqli_query($db->conecta_mysqli(), "INSERT INTO accounts (name, email, password, nickname) VALUES ('$usuario', '$email', '$senha', '$nickname')");
     }
 
-    function insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items){
+    function insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items, $create_date){
         $db = new db();
-        return mysqli_query($db->conecta_mysqli(), "INSERT INTO players (name, account_id, vocation, health, healthmax, lookbody, lookfeet, lookhead, looklegs, looktype, lookaddons, mana, manamax, soul, town_id, cap, sex, save, skull, stamina, direction, loss_experience, loss_mana, loss_skills, loss_containers, loss_items) VALUES('$nick', '$account_id', '$vocation', '$health', '$healthmax', '$lookbody', '$lookfeet', '$lookhead', '$looklegs', '$looktype', '$lookaddons', '$mana', '$manamax', '$soul', '$town_id', '$cap', '$sex', '$save', '$skull', '$stamina', '$direction', '$loss_experience', '$loss_mana', '$loss_skills', '$loss_containers', '$loss_items')");
+        return mysqli_query($db->conecta_mysqli(), "INSERT INTO players (name, account_id, vocation, health, healthmax, lookbody, lookfeet, lookhead, looklegs, looktype, lookaddons, mana, manamax, soul, town_id, cap, sex, save, skull, stamina, direction, loss_experience, loss_mana, loss_skills, loss_containers, loss_items, create_date) VALUES('$nick', '$account_id', '$vocation', '$health', '$healthmax', '$lookbody', '$lookfeet', '$lookhead', '$looklegs', '$looktype', '$lookaddons', '$mana', '$manamax', '$soul', '$town_id', '$cap', '$sex', '$save', '$skull', '$stamina', '$direction', '$loss_experience', '$loss_mana', '$loss_skills', '$loss_containers', '$loss_items', '$create_date')");
     }
 
     function insert_notice($nickname, $titulo,$noticia){
