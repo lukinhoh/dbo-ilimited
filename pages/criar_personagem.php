@@ -58,11 +58,10 @@
         // Checa se nickname existe
         if(mysqli_num_rows(get_player_name($nick)) == 0){
             if(insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items, $create_date)){
-                echo"<script language='javascript' type='text/javascript'>alert('Character criado com sucesso!');window.location.href='/acessar_conta';</script>";
-                exit();
+                return alert('Character criado com sucesso!', 'acessar_conta');
             }
         } else {
-            echo"<script language='javascript' type='text/javascript'>alert('Nome já existe!');</script>";
+            return alert('Nome já existe!');
         }
     }
     

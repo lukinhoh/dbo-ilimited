@@ -1,11 +1,13 @@
 <?php
-    session_start();
 
-    if(!isset($_SESSION['logado'])){
-        $_SESSION['logado'] = false;
+    // checar o status da sessão, se for disabled ou none, inicia uma nova sessão, se variavel logado não for true volta pra pagina de login
+    if(check_session()){
+        if(!isset($_SESSION['logado'])){
+            $_SESSION['logado'] = false;
+        }
     }
-
-    if($_SESSION['logado'] == false){
+    
+    if($_SESSION['logado'] === false){
 
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
             $usuario = $_POST['usuario'];
@@ -45,13 +47,12 @@
     }
     if($_SESSION['logado']){
         if(isset($_POST['sair'])){
-            session_destroy();
-            header("location: /acessar_conta");
+            return session_destroy() && header("location: /acessar_conta");
         }
         if(isset($_POST['deletar'])){
             $id_delet = $_POST['id_deletar'];
             if(delet_by_id($id_delet)){
-                echo"<script language='javascript' type='text/javascript'>alert('Character deletado!');</script>";
+                return alert('Character deletado!');
             }
         }
 

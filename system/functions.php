@@ -1,10 +1,15 @@
 <?php
+    function check_session(){
+        if(session_status() !== PHP_SESSION_ACTIVE || session_status() === PHP_SESSION_NONE){
+            return session_start();
+        }
+        if(session_status() === PHP_SESSION_DISABLED){
+            return session_start();
+        }
+    }
 
     function alert($msg, $go = null){
-        echo "<script>alert('$msg')</script>";
-        if($go != null){
-            echo "<script>window.location.href='$go'</script>";
-        }
+        echo $go != null ? "<script>alert('$msg');window.location.href='$go';</script>" : "<script>alert('$msg')</script>";
     }
     // functions to get
 

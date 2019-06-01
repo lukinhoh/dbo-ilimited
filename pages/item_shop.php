@@ -1,19 +1,19 @@
 <?php 
-    session_start();
-    if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false){
-        session_destroy();
-        header('location: 404');
-    }
-
-    if(isset($_SESSION['page_access']) && $_SESSION['page_access'] != 5){
-        header('location: 404');
+    // checar o status da sessão, se for disabled ou none, inicia uma nova sessão, se variavel logado não for true volta pra pagina de login
+    if(check_session()){
+        if(!isset($_SESSION['logado']) || $_SESSION['logado'] === false){
+            return session_destroy() && alert('Você precisa estar logado!', 'acessar_conta');
+        }
+        if(isset($_SESSION['page_access']) && $_SESSION['page_access'] != 5){
+            return header('location: 404');
+        }
     }
 
     require_once("system/db.php");
 
     if(isset($_POST['deletar_item_shop'])){
         $item_shop_id = $_POST['item_shop_id'];
-        delet_item_shop_by_id($item_shop_id);
+        return delet_item_shop_by_id($item_shop_id);
     }
 
     if(isset($_POST['add_item_shop']) && !empty($_POST['offer_name'])){
@@ -34,20 +34,17 @@
             //$img_name = $_FILES['img']['name'];
             //$novo_nome = uniqid().".$extensao";
             if(move_uploaded_file($temp, $img_url.$img_name)){
-                alert('Upload feito com sucesso', 'painel_admin');
+                if(insert_item_shop($offer_name, $offer_description, $offer_type, $itemid, $count, $points) && insert_img_item_shop($img_name, $itemid, $img_url)){
+                    alert('Item adicionado com sucesso.');
+                }
             }
         } else {
-            echo "<script>alert('Formato de icon é invalido')</script>";
-            header('item_shop');
+            return alert('Extensão de imagem invalida', 'painel_admin');
         }
 
-        if(insert_item_shop($offer_name, $offer_description, $offer_type, $itemid, $count, $points)){
-            if(insert_img_item_shop($img_name, $itemid, $img_url)){
-                alert('Item adicionado com sucesso.');
-            }
-        }
+        
     } elseif(isset($_POST['add_item_shop']) && empty($_POST['offer_name'])) {
-        alert('Preencha o campo name');
+        return alert('Preencha o campo name');
     }
 
     $get_points = get_points($_SESSION['name']);
