@@ -51,7 +51,7 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="noticia"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-dark mt-3 mb-3">Postar</button>
+                <button type="submit" class="btn btn-dark mt-3 mb-3"><i class="	far fa-paper-plane"></i> Postar</button>
             </form>
     <?php } }?>
     <?php while($dado = $pegar_noticias->fetch_array()) {?>
@@ -74,7 +74,7 @@
                         <form method="post" action="">
                             <div class="form-group">
                                 <input type='hidden' name='id_deletar_noticia' value="<?php echo  $dado['id'] ?>">
-                                <button type="submit" name="btn_deletar_noticia" class="btn btn-dark p-0 mt-0">Deletar</button>
+                                <button type="submit" name="btn_deletar_noticia" class="btn btn-dark p-0 mt-0"><i class="far fa-trash-alt"></i> Deletar</button>
                             </div>
                         </form>
                     </td>

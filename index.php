@@ -18,8 +18,7 @@
         if(is_file('pages/'.$file)){
             include_once('pages/'.$file);
         }else{
-            echo"<script language='javascript' type='text/javascript'>alert('Essa página não existe! Você será redirecionado para página inicial.');window.location.href='/inicio'</script>";
-            exit;
+            include_once('pages/404.php');
         }
     }else{
         include_once('pages/inicio.php');

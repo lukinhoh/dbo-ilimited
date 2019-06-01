@@ -1,9 +1,13 @@
 <?php 
     session_start(); 
-
-    if($_SESSION['page_access'] != 5){
+    if(isset($_SESSION['page_access'])){
+        if($_SESSION['page_access'] != 5){
+            header("location: 404");
+        } 
+    }else{
         header("location: 404");
-    } 
+    }
+    
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         if(!isset($_POST['account_name'])){

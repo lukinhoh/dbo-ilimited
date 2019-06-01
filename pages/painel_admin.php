@@ -6,7 +6,7 @@
             header("location: 404");
         }
     }else{
-        header("location: acessar_conta");
+        header("location: 404");
     }
 ?>
 
@@ -17,6 +17,7 @@
             <tr>
                 <th><a class="btn btn-secondary" href="points">Premium Pontos</a></th>
                 <th><a class="btn btn-secondary" href="premium_days">Premium Days</a></th>
+                <th><a class="btn btn-secondary" href="item_shop">Item Shop</a></th>
             </tr>
         </thead>
     </table>

@@ -61,7 +61,7 @@
 <div class="col-sm-7">
     <?php if($_SESSION['logado'] == false) {?>
         <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Acessar Conta</h1></div>
-        <form method="post">
+        <form method="post" class="w-50 mx-auto text-center">
             <div class="form-login">
                 <div class="form-group">
                     <label for="campo_usuario" class="font-weight-bold">Usuário</label>
@@ -72,7 +72,7 @@
                     <input type="password" class="form-control" id="campo_senha" name="senha" placeholder="Digite sua senha" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-outline-dark mt-3" id="btn_entrar">Entrar</button>
+            <button type="submit" class="btn btn-dark mt-3" id="btn_entrar">Entrar</button>
         </form>
         <?php 
             if(isset($erro) && $erro == 1){

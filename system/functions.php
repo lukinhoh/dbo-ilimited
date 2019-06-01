@@ -1,4 +1,13 @@
 <?php
+
+    function alert($msg, $go = null){
+        echo "<script>alert('$msg')</script>";
+        if($go != null){
+            echo "<script>window.location.href='$go'</script>";
+        }
+    }
+    // functions to get
+
     function checar_usuario_e_senha($user, $password){
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "SELECT id, name, nickname, page_access FROM accounts WHERE name = '$user' AND password = '$password'");
@@ -13,8 +22,7 @@
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "SELECT name, vocation, level FROM players WHERE account_id = '$id'");
     }
-
-    // functions to get
+    
     function get_attributes($id){
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "SELECT health, healthmax, lookbody, lookfeet, lookhead, looklegs, looktype, lookaddons, mana, manamax, soul, town_id, cap, sex, save, skull, stamina, direction, loss_experience, loss_mana, loss_skills, loss_containers, loss_items FROM players WHERE vocation = ".$id);
@@ -52,7 +60,12 @@
 
     function get_shop_items(){
         $db = new db();
-        return mysqli_query($db->conecta_mysqli(), "SELECT id, points, itemid, count, offer_type, offer_description, offer_name FROM z_shop_offer");
+        return mysqli_query($db->conecta_mysqli(), "SELECT id, points, itemid, count, offer_type, offer_description, offer_name FROM z_shop_offer ORDER BY offer_name ASC");
+    }
+
+    function get_shop_items_images($itemid){
+        $db = new db();
+        return mysqli_fetch_assoc(mysqli_query($db->conecta_mysqli(), "SELECT id, img_name, img_item_id, img_url FROM z_shop_images WHERE img_item_id = '$itemid'"));
     }
 
     function get_premium_days($name){
@@ -66,6 +79,7 @@
     }
 
     // functions to insert
+
     function insert_item_comunication($player_name, $item_type, $item_id, $item_name, $item_count){
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "INSERT INTO z_ots_comunication (player_name, item_type, item_id, item_name, item_count) VALUES ('$player_name', '$item_type', '$item_id', '$item_name', '$item_count')");
@@ -101,7 +115,18 @@
         return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premdays = premdays + '$days'");
     }
 
+    function insert_item_shop($offer_name, $offer_description, $offer_type, $itemid, $count, $points){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "INSERT INTO z_shop_offer (offer_name, offer_description, offer_type, itemid, count, points) VALUES ('$offer_name', '$offer_description', '$offer_type', '$itemid', '$count', '$points')");
+    }
+
+    function insert_img_item_shop($offer_name, $img_url, $itemid){
+        $db = new db();
+        return mysqli_query($db->conecta_mysqli(), "INSERT INTO z_shop_images (img_name, img_url, img_item_id) VALUES ('$offer_name', '$itemid', '$img_url')");
+    }
+
     // functions to delet / remove
+    
     function remove_points($name, $points){
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "UPDATE accounts SET premium_points = premium_points - '$points' WHERE name = '$name'");
@@ -120,11 +145,15 @@
     function delet_notice($id){
         $db = new db();
        return mysqli_query($db->conecta_mysqli(), "DELETE FROM noticias WHERE id = '$id'");
-
     }
 
     function delet_by_id($id){
         $db = new db();
         return mysqli_query($db->conecta_mysqli(), "DELETE FROM players WHERE name = '$id'");
+    }
+
+    function delet_item_shop_by_id($itemid){
+        $db = new db();
+       return mysqli_query($db->conecta_mysqli(), "DELETE FROM z_shop_offer WHERE itemid = '$itemid'");
     }
 ?>

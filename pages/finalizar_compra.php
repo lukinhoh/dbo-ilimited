@@ -11,6 +11,8 @@
     
     if(isset($_POST['comprar'])){
         $account_id = $_SESSION['account_id'];
+    }else{
+        header("location: shopping");
     }
     
     $itemid = $_POST['id_comprar'];
