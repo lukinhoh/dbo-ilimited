@@ -71,10 +71,11 @@
                     <td scope="col"><?php echo "Por: ".$dado['nickname']?></td>
                     <?php if(isset($_SESSION['page_access'])){if($_SESSION['page_access'] == 5){ ?>
                     <td scope="col">
-                        <form method="post" action="">
+                        <form method="post" action="noticia_edit">
                             <div class="form-group">
                                 <input type='hidden' name='id_deletar_noticia' value="<?php echo  $dado['id'] ?>">
-                                <button type="submit" name="btn_deletar_noticia" class="btn btn-dark p-0 mt-0"><i class="far fa-trash-alt"></i> Deletar</button>
+                                <button type="submit" name="btn_editar_noticia" class="btn btn-dark p-0 m-0 mr-2"><i class="far fa-edit fa-2x"></i></button> |
+                                <button type="submit" name="btn_deletar_noticia" class="btn btn-dark p-0 m-0 ml-2"><i class="far fa-trash-alt fa-2x"></i></button>
                             </div>
                         </form>
                     </td>
