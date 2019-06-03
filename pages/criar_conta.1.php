@@ -7,6 +7,8 @@
     } else {
         $_SESSION['logado'] = false;
     }
+
+    require_once "system/db.php";
     
     if($_SERVER["REQUEST_METHOD"] === 'POST'){
         $usuario = $_POST['usuario'];
@@ -16,33 +18,23 @@
 
         // Verifica se $usuario foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
         if(isset($usuario) && empty($usuario)){
-            return alert('Preencha o campo usuário', 'criar_conta');
+            echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o login!');window.location.href='/criar_conta';</script>";
+            exit;
         }
 
         // Verifica se $email foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
         if(isset($email) && empty($email)){
-            return alert('Preencha o campo email', 'criar_conta');
+            echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o email!');window.location.href='/criar_conta';</script>";
+            exit;
         }
 
         // Verifica se $senha foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
         if(isset($senha) && empty($senha)){
-            return alert('Preencha o campo senha', 'criar_conta');
+            echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha a senha!');window.location.href='/criar_conta';</script>";
+            exit;
         }   
 
-        if(isset($nickname) && empty($nickname)){
-            return alert('Preencha o campo nickname', 'criar_conta');
-        }
-        
-        $new_account = new Account();
-        $new_account->set_user($usuario);
-        $new_account->set_password($senha);
-        $new_account->set_email($email);
-        $new_account->set_nickname($nickname);
-        $new_account->set_status();
-        $new_account->set_ip();
-        $new_account->create_account();
         // Checagem se já existe usuario e email no banco de dados, caso não exista, cria a conta.
-        /*
         if(mysqli_num_rows(get_user($usuario)) == 0){
             if(mysqli_num_rows(get_email($email)) == 0){
                 // executar a query
@@ -56,7 +48,6 @@
         } else {
             echo"<script language='javascript' type='text/javascript'>alert('Usuário já existe!');</script>";
         }
-        */
     }
     
 ?>

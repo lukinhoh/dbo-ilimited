@@ -9,7 +9,7 @@
     }
 
     function alert($msg, $go = null){
-        echo $go != null ? "<script>alert('$msg');window.location.href='$go';</script>" : "<script>alert('$msg')</script>";
+        echo $go !== null ? "<script>alert('$msg');window.location.href='$go';</script>" : "<script>alert('$msg')</script>";
     }
     // functions to get
 

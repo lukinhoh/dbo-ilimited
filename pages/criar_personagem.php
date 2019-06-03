@@ -7,7 +7,7 @@
     }
     if($_SESSION['logado'] == false){
         session_destroy();
-        header("location: /acessar_conta");
+        return header("location: /acessar_conta");
     }
 
     // Checa se as informações foram iniciadas
@@ -17,51 +17,25 @@
         $account_id = $_SESSION['account_id'];
         // Checa se o nickname está vazio
         if(isset($nick) && empty($nick)){
-            echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o Nome!');window.location.href='/criar_personagem';</script>";
-            exit;
+            return alert('Por favor preencha o Nome!', 'criar_personagem');
         }
 
-        $pegar_dados = get_attributes($vocation);
-
-        $dados = $pegar_dados->fetch_array();
-
-        $health = $dados['health'];
-        $healthmax = $dados['healthmax'];
-        $lookbody = $dados['lookbody'];
-        $lookfeet = $dados['lookfeet'];
-        $lookhead = $dados['lookhead'];
-        $looklegs = $dados['looklegs'];
-        $looktype = $dados['looktype'];
-        $lookaddons = $dados['lookaddons'];
-        $mana = $dados['mana'];
-        $manamax = $dados['manamax'];
-        $soul = $dados['soul'];
-        $town_id = $dados['town_id'];
-        $cap = $dados['cap'];
-        $sex = $dados['sex'];
-        $save = $dados['save'];
-        $skull = $dados['skull'];
-        $stamina = $dados['stamina'];
-        $direction = $dados['direction'];
-        $loss_experience = $dados['loss_experience'];
-        $loss_mana = $dados['loss_mana'];
-        $loss_skills = $dados['loss_skills'];
-        $loss_containers = $dados['loss_containers'];
-        $loss_items = $dados['loss_items'];
-        $create_date = date('d/m/y');
-
+        $new_char = new Character();
+        $new_char->set_name($nick);
+        $new_char->set_account_id($account_id);
+        $new_char->set_vocation($vocation);
+        
         $get_char = get_char_by_account_id($account_id);
         if(mysqli_num_rows($get_char) == 10){
-            echo"<script language='javascript' type='text/javascript'>alert('Limite de personagens criados esgotado!');window.location.href='/acessar_conta';</script>";
-            exit();
+            return alert('Limite de personagens criados esgotado!', 'acessar_conta');
         }
         // Checa se nickname existe
         if(mysqli_num_rows(get_player_name($nick)) == 0){
-            if(insert_new_char($nick, $account_id, $vocation, $health, $healthmax, $lookbody, $lookfeet, $lookhead, $looklegs, $looktype, $lookaddons, $mana, $manamax, $soul, $town_id, $cap, $sex, $save, $skull, $stamina, $direction, $loss_experience, $loss_mana, $loss_skills, $loss_containers, $loss_items, $create_date)){
+            if($new_char->create_character()){
                 return alert('Character criado com sucesso!', 'acessar_conta');
             }
         } else {
-            return alert('Nome já existe!');
+            return alert('Nome já existe!','acessar_conta');
         }
     }
     

@@ -52,7 +52,7 @@
         if(isset($_POST['deletar'])){
             $id_delet = $_POST['id_deletar'];
             if(delet_by_id($id_delet)){
-                return alert('Character deletado!');
+                return alert('Character deletado!', 'acessar_conta');
             }
         }
 
