@@ -9,13 +9,13 @@
     }
     
     if($_SERVER["REQUEST_METHOD"] === 'POST'){
-        $usuario = $_POST['usuario'];
+        $user = $_POST['usuario'];
         $email = $_POST['email'];
-        $senha = sha1($_POST['senha']);
+        $password = sha1($_POST['senha']);
         $nickname = $_POST['nickname'];
 
-        // Verifica se $usuario foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
-        if(isset($usuario) && empty($usuario)){
+        // Verifica se $user foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
+        if(isset($user) && empty($user)){
             return alert('Preencha o campo usuário', 'criar_conta');
         }
 
@@ -24,8 +24,8 @@
             return alert('Preencha o campo email', 'criar_conta');
         }
 
-        // Verifica se $senha foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
-        if(isset($senha) && empty($senha)){
+        // Verifica se $password foi iniciado e se está vazia, caso esteja vazia retorna para a página de criar conta.
+        if(isset($password) && empty($password)){
             return alert('Preencha o campo senha', 'criar_conta');
         }   
 
@@ -34,29 +34,14 @@
         }
         
         $new_account = new Account();
-        $new_account->set_user($usuario);
-        $new_account->set_password($senha);
+        $new_account->set_user($user);
+        $new_account->set_password($password);
         $new_account->set_email($email);
         $new_account->set_nickname($nickname);
         $new_account->set_status();
         $new_account->set_ip();
         $new_account->create_account();
-        // Checagem se já existe usuario e email no banco de dados, caso não exista, cria a conta.
-        /*
-        if(mysqli_num_rows(get_user($usuario)) == 0){
-            if(mysqli_num_rows(get_email($email)) == 0){
-                // executar a query
-                if(insert_new_account($usuario, $email, $senha, $nickname)){
-                    echo"<script language='javascript' type='text/javascript'>alert('Conta criada com sucesso!');window.location.href='/acessar_conta';</script>";
-                    exit();
-                }
-            } else{
-                echo"<script language='javascript' type='text/javascript'>alert('Email já existe!');</script>";
-            }
-        } else {
-            echo"<script language='javascript' type='text/javascript'>alert('Usuário já existe!');</script>";
-        }
-        */
+
     }
     
 ?>
