@@ -1,14 +1,13 @@
 <?php 
     // checar o status da sessão, se for disabled ou none, inicia uma nova sessão, se variavel logado não for true volta pra pagina de login
-    if(check_session()){
-        if(!isset($_SESSION['logado']) || $_SESSION['logado'] === false){
-            return session_destroy() && alert('Você precisa estar logado!', 'acessar_conta');
-        }
-        if(isset($_SESSION['page_access']) && $_SESSION['page_access'] != 5){
-            return header('location: 404');
-        }
+    session();
+    
+    if(!isset($_SESSION['logado']) || $_SESSION['logado'] === false){
+        return session_destroy() && alert('Você precisa estar logado!', 'acessar_conta');
     }
-
+    if(isset($_SESSION['page_access']) && $_SESSION['page_access'] != 5){
+        return header('location: 404');
+    }
     if(isset($_POST['deletar_item_shop'])){
         $item_shop_id = $_POST['item_shop_id'];
         return delet_item_shop_by_id($item_shop_id);

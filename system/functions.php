@@ -1,10 +1,7 @@
 <?php
-    function check_session(){
-        if(session_status() !== PHP_SESSION_ACTIVE || session_status() === PHP_SESSION_NONE){
-            return session_start();
-        }
-        if(session_status() === PHP_SESSION_DISABLED){
-            return session_start();
+    function session(){
+        if(!isset($_SESSION)){
+            session_start();
         }
     }
 

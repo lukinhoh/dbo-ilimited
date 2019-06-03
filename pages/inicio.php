@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session();
     
     $pegar_noticias = get_notices();
 

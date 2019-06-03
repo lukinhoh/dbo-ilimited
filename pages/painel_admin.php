@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session();
 
     if(isset($_SESSION['page_access'])){
         if($_SESSION['page_access'] == 0){

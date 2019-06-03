@@ -1,11 +1,11 @@
 <?php 
     // checar o status da sessão, se for disabled ou none, inicia uma nova sessão, se variavel logado não for true volta pra pagina de login
-    if(check_session()){
-        if(!isset($_SESSION['logado']) || $_SESSION['logado'] === false){
-            return session_destroy() && alert('Você precisa estar logado!', 'acessar_conta');
-        }
-    }
+    session();
 
+    if(!isset($_SESSION['logado']) || $_SESSION['logado'] === false){
+        return session_destroy() && alert('Você precisa estar logado!', 'acessar_conta');
+    }
+    
     $account_id = $_SESSION['account_id'];
     $itemid = $_POST['id_comprar'];
     $item = get_item_by_id($itemid);

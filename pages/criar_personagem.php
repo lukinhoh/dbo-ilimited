@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session();
 
     if(!isset($_SESSION['logado'])){
         $_SESSION['logado'] = false;

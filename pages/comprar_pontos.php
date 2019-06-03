@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    session();
+    
     if($_SESSION['logado'] == false){
         echo"<script language='javascript' type='text/javascript'>alert('Você precisa estar logado!');window.location.href='/acessar_conta';</script>";
         session_destroy();

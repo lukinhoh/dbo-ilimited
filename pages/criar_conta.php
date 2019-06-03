@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    session();
+    
     if(isset($_SESSION['logado'])){
         if($_SESSION['logado'] == true){
             session_destroy();
