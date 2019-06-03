@@ -5,10 +5,6 @@
         session_destroy();
         exit();
     }
-
-    require_once "system/db.php";
-
-    
 ?>
 <div class="col-sm-7">
     <div class="text-center border-bottom border-top border-dark p-3 mb-5 bg-white rounded">

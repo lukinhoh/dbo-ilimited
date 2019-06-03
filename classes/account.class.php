@@ -39,7 +39,7 @@
         }
         
         public function set_ip(){
-            return $this->create_ip = $_SERVER['REMOTE_ADDR'];
+            return $this->create_ip = intval($_SERVER['REMOTE_ADDR']);
         }
 
         function create_account(){

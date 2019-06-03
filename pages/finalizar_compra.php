@@ -6,8 +6,6 @@
         }
     }
 
-    require_once("system/db.php");
-   
     $account_id = $_SESSION['account_id'];
     $itemid = $_POST['id_comprar'];
     $item = get_item_by_id($itemid);

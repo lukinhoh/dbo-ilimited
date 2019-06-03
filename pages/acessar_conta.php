@@ -1,5 +1,4 @@
 <?php
-
     // checar o status da sessão, se for disabled ou none, inicia uma nova sessão, se variavel logado não for true volta pra pagina de login
     if(check_session()){
         if(!isset($_SESSION['logado'])){

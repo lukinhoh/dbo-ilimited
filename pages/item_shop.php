@@ -9,8 +9,6 @@
         }
     }
 
-    require_once("system/db.php");
-
     if(isset($_POST['deletar_item_shop'])){
         $item_shop_id = $_POST['item_shop_id'];
         return delet_item_shop_by_id($item_shop_id);

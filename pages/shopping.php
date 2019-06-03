@@ -6,8 +6,6 @@
         exit();
     }
 
-    require_once("system/db.php");
-
     $get_points = get_points($_SESSION['name']);
     $get_shop_items = get_shop_items();
 

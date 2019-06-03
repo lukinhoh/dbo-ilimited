@@ -1,5 +1,4 @@
 <?php
-    require_once("system/db.php");
     session_start();
 
     if(!isset($_SESSION['logado'])){
@@ -16,9 +15,9 @@
         $vocation = $_POST['vocation'];
         $account_id = $_SESSION['account_id'];
         // Checa se o nickname está vazio
-        if(isset($nick) && empty($nick)){
-            return alert('Por favor preencha o Nome!', 'criar_personagem');
-        }
+        //if(isset($nick) && empty($nick)){
+        //    return alert('Por favor preencha o Nome!', 'criar_personagem');
+        //}
 
         $new_char = new Character();
         $new_char->set_name($nick);

@@ -83,5 +83,5 @@
                 </tr>
             </thead>
         </table>
-    <?php } ?>
+    <?php } echo $_SERVER['REMOTE_ADDR']; ?>
 </div>
