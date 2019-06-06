@@ -15,9 +15,9 @@
     <table class="table table-hover table-dark text-center rounded">
         <thead>
             <tr>
-                <th><a class="btn btn-secondary" href="points">Premium Pontos</a></th>
-                <th><a class="btn btn-secondary" href="premium_days">Premium Days</a></th>
-                <th><a class="btn btn-secondary" href="item_shop">Item Shop</a></th>
+                <td><a class="btn btn-secondary" href="points">Premium Pontos</a></td>
+                <td><a class="btn btn-secondary" href="premium_days">Premium Days</a></td>
+                <td><a class="btn btn-secondary" href="item_shop">Item Shop</a></td>
             </tr>
         </thead>
     </table>

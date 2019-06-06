@@ -27,8 +27,8 @@
         <thead>
             <?php while($dado = $get_shop_items->fetch_array()) {?>
                 <tr>
-                    <?php $get_shop_images = get_shop_items_images($dado['itemid']); $img_nome = $get_shop_images['img_name'];?>
-                    <td scope="col"><?php  echo "<img src='imagens/icons/$img_nome'/>"; ?></td>
+                    <?php $get_shop_images = get_shop_items_images($dado['itemid']); $img_url = $get_shop_images['img_url']; $img_nome = $get_shop_images['img_name'];?>
+                    <td scope="col"><?php  echo "<img src='$img_url$img_nome'/>"; ?></td>
                     <td scope="col"><?php echo "<strong>".$dado['offer_name']."</strong><br>".$dado['offer_description'];?></td>
                     <td scope="col"><?php echo $dado['points'];?></td>
                     <td scope="col">

@@ -2,10 +2,6 @@
     // checar o status da sessão, se for disabled ou none, inicia uma nova sessão, se variavel logado não for true volta pra pagina de login
     session();
     
-    if(!isset($_SESSION['logado'])){
-        $_SESSION['logado'] = false;
-    }
-    
     if($_SESSION['logado'] === false){
 
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
@@ -81,13 +77,29 @@
         ?>
     <?php } elseif($_SESSION['logado'] == true) {?>
         <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><?php echo "<h1 class='text-capitalize'>Seja Bem-Vindo, ".$_SESSION['nome']."! </h1>"; ?></div>
+        <!-- Aqui começa a exibição de informações -->
         <h3 class="text-center font-weight-bold">Suas informações</h3>
         <div class="border border-dark shadow-sm p-3 mb-5 bg-white rounded">
             <h5 class="font-weight-bold">Nome: <?php echo $_SESSION['nome']; ?></h>
             <h5 class="font-weight-bold">Premium Days: <?php $get_points = get_premium_days($_SESSION['name']); echo $get_points['premdays']; ?></h>
             <h5 class="font-weight-bold">Premium Points: <?php $get_points = get_points($_SESSION['name']); echo $get_points['premium_points']; ?></h>
         </div>
-        
+        <!-- Aqui termina exibição de informações -->
+        <!-- Exibi os botões -->
+        <form method="post" action="">
+            <div class="form-group"></div>
+            
+            <div class="form-group"></div>
+        </form>
+        <div class="btn-group">
+            <a href="criar_personagem" class="btn btn-outline-dark mr-3">Create Character</a>
+            <?php if($_SESSION['page_access'] == 5){ ?>
+                <a href="painel_admin" class="btn btn-outline-dark mr-3">Painel Admin</a>
+            <?php } ?>
+            <form action="" method="post"><button type="submit" name="sair" class="btn btn-outline-dark mr-3">Logout</button></form>
+        </div>
+        <!-- Termina parte dos botões -->
+        <!-- Aqui começa exibição de personagens -->
         <table class="table table-hover table-dark rounded">
             <h3 class="text-center font-weight-bold">Seus Personagens</h3>
             <thead>
@@ -123,14 +135,7 @@
                 <?php } ?>
             </thead>
         </table>
-        
-        <form method="post" action="">
-            <div class="form-group"><a href="criar_personagem" class="btn btn-outline-dark">Create Character</a></div>
-            <?php if($_SESSION['page_access'] == 5){ ?>
-                <div class="form-group"><a href="painel_admin" class="btn btn-outline-dark">Painel Admin</a></div>
-            <?php } ?>
-            <div class="form-group"><button type="submit" name="sair" class="btn btn-outline-dark">Logout</button></div>
-        </form>
+        <!-- Aqui termina a exibição de personagens -->
     <?php } ?>
 
 </div>

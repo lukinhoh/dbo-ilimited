@@ -3,39 +3,28 @@
     
     $pegar_noticias = get_notices();
 
-    if(!isset($_SESSION['logado'])){
-        session_destroy();
-    } else {
-        if(isset($_SESSION['page_access'])){
-            if($_SESSION['page_access'] == 5){
-                if(isset($_POST['titulo']) && isset($_POST['noticia'])){
-                    if(empty($_POST['titulo'])){
-                        echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o campo título da postagem!');window.location.href='/inicio';</script>";
-                        exit;
-                    }
-                    if(empty($_POST['noticia'])){
-                        echo"<script language='javascript' type='text/javascript'>alert('Porfavor preencha o campo notícia da postagem!');window.location.href='/inicio';</script>";
-                        exit;
-                    }
-
-                    insert_notice($_SESSION['nome'], $_POST['titulo'], $_POST['noticia']);
-                    echo"<script language='javascript' type='text/javascript'>alert('Postagem criada!');window.location.href='/inicio';</script>";
-                    exit;
-
+    if(isset($_SESSION['page_access'])){
+        if($_SESSION['page_access'] == 5){
+            if(isset($_POST['titulo']) && isset($_POST['noticia'])){
+                if(empty($_POST['titulo'])){
+                    return alert('Preencha o campo título', 'inicio');
+                }elseif(empty($_POST['noticia'])){
+                    return alert('Preencha o campo notícia', 'inicio');
+                }else{
+                    return insert_notice($_SESSION['nome'], $_POST['titulo'], $_POST['noticia']) && alert('Postagem criada!', 'inicio');
                 }
-                if(isset($_POST['btn_deletar_noticia'])){
-                    delet_notice($_POST['id_deletar_noticia']);
-                    echo"<script language='javascript' type='text/javascript'>alert('Postagem deletada!');window.location.href='/inicio';</script>";
-                    exit;
-                }
+
+            }
+            if(isset($_POST['btn_deletar_noticia'])){
+                return delet_notice($_POST['id_deletar_noticia']) && alert('Postagem deletada!', 'inicio');
             }
         }
     }
 
 ?>
-<div class="col-sm-7">
+<div class="col-sm-7 meio">
     <div class="page-header">
-        <h1 class="text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded">DBO Ilimited</h1>
+        <h1 class="text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded">DBO</h1>
         <h1 class="text-center border-bottom border-top border-dark p-3 mb-5 bg-white rounded">Notícias</h1>
     </div>
     <?php if(isset($_SESSION['page_access'])) {?>
@@ -55,7 +44,7 @@
             </form>
     <?php } }?>
     <?php while($dado = $pegar_noticias->fetch_array()) {?>
-        <table class="table table-hover table-dark rounded">
+        <table class="table table-hover table-dark mt-3 rounded">
             <thead>
                 <tr>
                 <th scope="col" class="text-center"><?php echo $dado['titulo'] ?></th>
@@ -83,5 +72,5 @@
                 </tr>
             </thead>
         </table>
-    <?php } echo $_SERVER['REMOTE_ADDR']; ?>
+    <?php } ?>
 </div>

@@ -1,50 +1,49 @@
 /* Cor de fundo e centralizando menu */
 .navbar{
+    padding: 0 !important;
     margin: 0 auto !important;
-    background-color: black !important;
+    background-color: rgb(4, 139, 250) !important;
 }
 
 /* Define o tamanho de cada item do menu e centraliza o texto de cada item */
 .navbar .nav-item{
-    width: 150px;
-    text-align: center;
 }
 
 /* Cor e fonte do link */
 .navbar .nav-item .nav-link{
+    width: 150px !important;
+    height: 50px !important;
     color:white !important;
-    font-family: Arial, Tahoma, sans-serif;
-}
-
-/* Adiciona uma borda ao item ativo no momento */
-.navbar .active{
-    border: solid white !important;
+    text-align: center !important;
+    font: Arial, 14pt !important;
 }
 
 /* Ao passar o mouse por cima do item muda cor e largura dos items com uma transição básica */
 .navbar .nav-item:hover{
     /*transition-duration: 0.3s;*/
-    transition: all .3s ease-in-ou;
-    width: 170px;
-    background-color: white !important;
 }
 
 /* Ao passar o mouse por cima do item muda cor da fonte */
 .navbar .nav-item .nav-link:hover{
-    color:black !important;
+    transition: all .3s ease-in-ou !important;
+    width: 170px !important;
+    background-color: rgb(6, 119, 212) !important;
 }
 
 /* Define altura e largura, define um padding-top e cor do fundo, também muda o tipo de fonte. */
 body {
-    padding-top: 100px;
+    padding-top: 100px !important;
     width: 100% !important;
     height: 100% !important;
-    background-color: #cccccc; /* Used if the image is unavailable */
-    font-family: Arial, Tahoma, sans-serif;
+    background: #e40707 !important; /* Used if the image is unavailable */
+    font-family: Arial, Tahoma, sans-serif !important;
 }
 
-.jumbotron {
-    background-color: white;
+.meio {
+    border: 2px solid #ffa600dc  !important;
+    border-radius: 15px !important;
+    padding-top: 25px !important;
+    background-color: #ffa600 !important;
 }
 
 .form-login {
@@ -62,4 +61,10 @@ body {
 .btn-icon {
     padding: 8px;
     background-color: white;
+}
+
+.msg_footer {
+    bottom: 0 !important;
+    width: 100%;
+    text-align: center;
 }

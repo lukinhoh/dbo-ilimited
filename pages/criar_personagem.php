@@ -1,9 +1,6 @@
 <?php
     session();
 
-    if(!isset($_SESSION['logado'])){
-        $_SESSION['logado'] = false;
-    }
     if($_SESSION['logado'] == false){
         session_destroy();
         return header("location: /acessar_conta");
@@ -23,8 +20,12 @@
         $new_char->set_name($nick);
         $new_char->set_account_id($account_id);
         $new_char->set_vocation($vocation);
-        
+
         $get_char = get_char_by_account_id($account_id);
+        
+        if (trim($new_char->get_name(), " ") == ""){
+            return alert('Nome invalido', 'criar_personagem');
+        }
         if(mysqli_num_rows($get_char) == 10){
             return alert('Limite de personagens criados esgotado!', 'acessar_conta');
         }
