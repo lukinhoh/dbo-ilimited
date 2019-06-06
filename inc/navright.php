@@ -1,5 +1,5 @@
             <div class="col-sm">
-                <table class="table table-hover table-dark">
+                <table class="table table-hover table-dark opacidade">
                     <thead>
                         <th class="text-center" scope="col">Servidor</th>
                     </thead>

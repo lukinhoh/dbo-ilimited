@@ -23,36 +23,35 @@
 
 ?>
 <div class="col-sm-7 meio">
-    <div class="page-header">
-        <h1 class="text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded">DBO</h1>
-        <h1 class="text-center border-bottom border-top border-dark p-3 mb-5 bg-white rounded">Notícias</h1>
+    <div class="page-header opacidade">
+        <h1 class="text-center border border-dark shadow-sm p-3 mb-5 text-white rounded">Notícias</h1>
     </div>
     <?php if(isset($_SESSION['page_access'])) {?>
         <?php if($_SESSION['page_access'] == 5) {?>
             <form method="post" action="">
-                <div class="form-login">
+                <div class="opacidade p-3">
                     <div class="form-group">
-                        <label for="titulo" class="font-weight-bold">Título</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo">
+                        <label for="titulo" class="text-white font-weight-bold">Título</label>
+                        <input type="text" class="form-control opacidade text-white" id="titulo" name="titulo">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1" class="font-weight-bold">Notícia</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="noticia"></textarea>
+                        <label for="exampleFormControlTextarea1" class="text-white font-weight-bold">Notícia</label>
+                        <textarea class="form-control opacidade text-white" id="exampleFormControlTextarea1" rows="3" name="noticia"></textarea>
                     </div>
+                    <button type="submit" class="btn btn-success mt-3 mb-3"><i class="	far fa-paper-plane"></i> Postar</button>
                 </div>
-                <button type="submit" class="btn btn-dark mt-3 mb-3"><i class="	far fa-paper-plane"></i> Postar</button>
             </form>
     <?php } }?>
     <?php while($dado = $pegar_noticias->fetch_array()) {?>
-        <table class="table table-hover table-dark mt-3 rounded">
+        <table class="table table-dark opacidade mt-3 mb-3">
             <thead>
                 <tr>
-                <th scope="col" class="text-center"><?php echo $dado['titulo'] ?></th>
+                <th scope="col" class="text-center text-break"><?php echo $dado['titulo'] ?></th>
                 </tr>
             </thead>
             <thead>
                 <tr>
-                <td scope="col"><?php echo $dado['noticia'] ?></td>
+                <td scope="col" class="pl-5 text-break"><?php echo nl2br($dado['noticia']); ?></td>
                 </tr>
             </thead>
             <thead>

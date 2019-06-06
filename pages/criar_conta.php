@@ -47,27 +47,27 @@
     
 ?>
 <div class="col-sm-7">
-    <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 bg-white rounded"><h1>Criar Conta</h1></div>
+    <div class="page-header text-center border border-dark shadow-sm p-3 mb-5 text-white opacidade rounded"><h1>Criar Conta</h1></div>
     <form method="post" action="">
-        <div class="form-login">
-        <div class="form-group">
-            <label for="usuario" class="font-weight-bold">Usuário</label>
-            <input type="text" class="form-control" id="usuario" name="usuario" required>
+        <div class="form-login w-50 mx-auto text-center text-white opacidade p-3">
+            <div class="form-group">
+                <label for="usuario" class="font-weight-bold">Usuário</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="nickname" class="font-weight-bold">Seu Nome</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" required>
+            </div>
+            <div class="form-group">
+                <label for="email" class="font-weight-bold">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="senha" class="font-weight-bold">Senha</label>
+                <input type="password" class="form-control" id="senha" name="senha" required>
+            </div>
+            <label>Ao criar conta você estará aceitando os termos do serviço.</label>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Cadastrar</button>
         </div>
-        <div class="form-group">
-            <label for="nickname" class="font-weight-bold">Seu Nome</label>
-            <input type="text" class="form-control" id="nickname" name="nickname" required>
-        </div>
-        <div class="form-group">
-            <label for="email" class="font-weight-bold">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="senha" class="font-weight-bold">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha" required>
-        </div>
-        <label>Ao criar conta você estará aceitando os termos do serviço.</label>
-        </div>
-        <button type="submit" class="btn btn-outline-dark mt-3">Cadastrar</button>
     </form>
 </div>
