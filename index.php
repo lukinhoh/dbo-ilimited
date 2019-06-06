@@ -29,5 +29,5 @@
     // Include scripts jquery, ajax, js etc...
     include_once('inc/scripts.php');
     // Include footer
-    include_once('inc/footer.php');
+    //include_once('inc/footer.php');
 ?>
