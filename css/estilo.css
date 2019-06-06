@@ -6,10 +6,6 @@ html, body {height:100%;}
     background-color: rgb(4, 139, 250) !important;
 }
 
-/* Define o tamanho de cada item do menu e centraliza o texto de cada item */
-.navbar .nav-item{
-}
-
 /* Cor e fonte do link */
 .navbar .nav-item .nav-link{
     width: 150px !important;
@@ -17,11 +13,6 @@ html, body {height:100%;}
     color:white !important;
     text-align: center !important;
     font: Arial, 14pt !important;
-}
-
-/* Ao passar o mouse por cima do item muda cor e largura dos items com uma transição básica */
-.navbar .nav-item:hover{
-    /*transition-duration: 0.3s;*/
 }
 
 /* Ao passar o mouse por cima do item muda cor da fonte */
